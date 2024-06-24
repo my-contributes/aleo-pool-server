@@ -17,9 +17,13 @@ use json_rpc_types::{Error, ErrorCode, Id};
 use snarkos_node_router_messages::{Data, UnconfirmedSolution};
 use snarkvm::{
     console::account::Address,
-    prelude::{Environment, PartialSolution, ProverSolution, Testnet3, ToBytes},
-    synthesizer::{CoinbasePuzzle, EpochChallenge, PuzzleCommitment, PuzzleConfig, UniversalSRS},
+    prelude::{Environment, MainnetV0, ToBytes},
+    synthesizer::{PuzzleConfig, snark::UniversalSRS},
+    ledger::P
 };
+
+
+use snarkvm_ledger_puzzle::{PuzzleSolutions, Solution, SolutionID, PartialSolution, Puzzle as CoinbasePuzzle, EpochChallenge, UniversalSRS};
 use snarkvm::circuit::prelude::PrimeField;
 use snarkvm::prelude::CanaryV0;
 use snarkvm_algorithms::{
@@ -698,8 +702,8 @@ impl Server {
                         // TODO: dummy operator
                         if let Err(e) = validator_sender
                             .send(SnarkOSMessage::UnconfirmedSolution(UnconfirmedSolution {
-                                puzzle_commitment: PuzzleCommitment::new(commitment),
-                                solution: Data::Object(ProverSolution::<CanaryV0>::new(
+                                solution_id: SolutionID::from(commitment),
+                                solution: Data::Object(Solution::<CanaryV0>::new(
                                     PartialSolution::<CanaryV0>::new(pool_address, nonce, commitment),
                                     proof,
                                 )),

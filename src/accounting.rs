@@ -14,7 +14,7 @@ use savefile::{load_file, save_file};
 use savefile_derive::Savefile;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use snarkvm::prelude::{PuzzleCommitment, CanaryV0};
+use snarkvm::prelude::CanaryV0;
 use tokio::{
     sync::{
         mpsc::{channel, Sender},
@@ -24,6 +24,7 @@ use tokio::{
     time::sleep,
 };
 use tracing::{debug, error, info};
+use snarkvm_ledger_puzzle::{PuzzleSolutions, Solution, SolutionID};
 
 #[cfg(feature = "db")]
 use crate::db::DB;
@@ -120,7 +121,7 @@ struct Null {}
 pub enum AccountingMessage {
     NewShare(String, u64),
     SetN(u64),
-    NewSolution(PuzzleCommitment<CanaryV0>),
+    NewSolution(SolutionID<CanaryV0>),
     Exit,
 }
 

@@ -20,6 +20,7 @@ snarkvm = { git = "https://github.com/AleoNet/snarkVM.git", branch = "mainnet-st
 snarkvm-algorithms = { git = "https://github.com/AleoNet/snarkVM.git", branch = "mainnet-staging" }
 snarkvm-curves = { git = "https://github.com/AleoNet/snarkVM.git", branch = "mainnet-staging" }
 snarkvm-utilities = { git = "https://github.com/AleoNet/snarkVM.git", branch = "mainnet-staging" }
+snarkvm-ledger-puzzle = { git = "https://github.com/AleoNet/snarkVM.git", branch = "mainnet-staging" }
 snarkos-account = { git = "https://github.com/AleoNet/snarkOS.git", branch = "mainnet-staging" }
 snarkos-node-router-messages = { git = "https://github.com/AleoNet/snarkOS.git", branch = "mainnet-staging" }
 tracing = "0.1.37"

@@ -6,6 +6,7 @@ mod validator_peer;
 
 #[cfg(feature = "db")]
 mod db;
+mod message;
 
 use std::sync::Arc;
 
